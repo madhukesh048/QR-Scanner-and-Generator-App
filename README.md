@@ -1,4 +1,4 @@
-# barcode_scanner
+# QR Scanner and Generator
 
 A new Flutter project.
 
