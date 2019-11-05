@@ -1,5 +1,6 @@
-import 'package:barcode_scanner/qrgenerator.dart';
-import 'package:barcode_scanner/qrscanner.dart';
+
+import 'package:barcode_scanner/qr_generator.dart';
+import 'package:barcode_scanner/qr_scanner.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
