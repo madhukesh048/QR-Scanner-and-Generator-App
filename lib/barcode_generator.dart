@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/rendering.dart';
+import 'package:barcode_flutter/barcode_flutter.dart';
 
-class QRGenerator extends StatefulWidget {
-  const QRGenerator({Key key}) : super(key: key);
+class BarcodeGenerator extends StatefulWidget {
+  const BarcodeGenerator({Key key}) : super(key: key);
 
   @override
-  _QRGeneratorState createState() => _QRGeneratorState();
+  _BarcodeGeneratorState createState() => _BarcodeGeneratorState();
 }
 
-class _QRGeneratorState extends State<QRGenerator> {
+class _BarcodeGeneratorState extends State<BarcodeGenerator> {
   GlobalKey globalKey = GlobalKey();
   String _dataString = "";
   String _inputErrorText;
@@ -18,7 +18,7 @@ class _QRGeneratorState extends State<QRGenerator> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('QR Generator'),
+          title: Text('Barcode Generator'),
         ),
         body: _contentWidget());
   }
@@ -72,15 +72,15 @@ class _QRGeneratorState extends State<QRGenerator> {
             child: Center(
               child: RepaintBoundary(
                 key: globalKey,
-                child: QrImage(
-                  data: _dataString,
-                  size: 0.5 * bodyHeight,
-                  onError: (ex) {
-                    print("[QR] ERROR - $ex");
-                    setState(() {
-                      _inputErrorText =
-                          "Error! Maybe your input value is too long?";
-                    });
+                child: BarCodeImage(
+                  params: Code128BarCodeParams(
+                    _dataString,
+                    lineWidth: 2.0,
+                    barHeight: 90.0,
+                    withText: true,
+                  ),
+                  onError: (error) {
+                    print('error = $error');
                   },
                 ),
               ),
